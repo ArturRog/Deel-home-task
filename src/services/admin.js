@@ -13,10 +13,12 @@ const getBestProfession = async (start, end) => {
             include: [{
                 model: Job,
                 required: true,
-                paid: true,
-                paymentDate: {
-                    [Op.lte]: end,
-                    [Op.gte]: start
+                where: {
+                    paid: true,
+                    paymentDate: {
+                        [Op.lte]: end,
+                        [Op.gte]: start
+                    }
                 }
             }]
         }],
@@ -42,10 +44,12 @@ const getBestClients = async (start, end, limit= 2) => {
             include: [{
                 model: Job,
                 required: true,
-                paid: true,
-                paymentDate: {
-                    [Op.lte]: end,
-                    [Op.gte]: start
+                where: {
+                    paid: true,
+                    paymentDate: {
+                        [Op.lte]: end,
+                        [Op.gte]: start
+                    }
                 }
             }]
         }],
