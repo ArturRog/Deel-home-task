@@ -1,10 +1,4 @@
-class ClientFacingError extends Error {
-    constructor(message, statusCode) {
-        super(message);
-        this.message = message;
-        this.statusCode = statusCode;
-    }
-}
+const ClientFacingError = require("./clientFacingError");
 const ERROR_DEFAULTS = {
     status: 500,
     message: 'Internal server error'

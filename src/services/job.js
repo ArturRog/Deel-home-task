@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const {Job, Contract, sequelize, Profile} = require("../model");
+const ClientFacingError = require("../middleware/clientFacingError");
 
 const getUnpaidUserJobs = async (userId) => {
     return Job.findAll({
@@ -35,10 +36,10 @@ const payJob = async (jobId, clientId) => {
         }, { transaction })
 
         if (!job) {
-            throw new Error('Job not found');
+            throw new ClientFacingError('Job not found', 404);
         }
         if (job.paid) {
-            throw new Error('Job was already paid');
+            throw new ClientFacingError('Job was already paid', 409);
         }
 
         const [client, contractor] = await Promise.all([
@@ -48,7 +49,7 @@ const payJob = async (jobId, clientId) => {
 
         const amountToPay = job.price;
         if (client.balance < amountToPay) {
-            throw new Error('Insufficient client\'s balance');
+            throw new ClientFacingError('Insufficient client\'s balance', 400);
         }
 
         client.balance -= amountToPay;

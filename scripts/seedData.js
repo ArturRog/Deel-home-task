@@ -136,26 +136,31 @@ const seed = async () => {
         }),
         Job.create({
             description: 'work',
+            paid: false,
             price: 200,
             ContractId: 1,
         }),
         Job.create({
             description: 'work',
+            paid: false,
             price: 201,
             ContractId: 2,
         }),
         Job.create({
             description: 'work',
+            paid: false,
             price: 202,
             ContractId: 3,
         }),
         Job.create({
             description: 'work',
+            paid: false,
             price: 200,
             ContractId: 4,
         }),
         Job.create({
             description: 'work',
+            paid: false,
             price: 200,
             ContractId: 7,
         }),

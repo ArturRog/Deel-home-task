@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const asyncHandler = require('express-async-handler')
 const {getAllUserContracts, getUserContractById} = require("../../services/contract");
+const ClientFacingError = require("../../middleware/clientFacingError");
 
 const contractsRouter = new Router();
 
@@ -12,8 +13,9 @@ contractsRouter.get('/', asyncHandler(async (req, res) => {
 contractsRouter.get('/:id', asyncHandler(async (req, res) =>{
     const {id} = req.params
     const contract = await getUserContractById(id, req.profile.id);
-    if(!contract)
-        return res.status(404).end()
+    if(!contract) {
+        throw new ClientFacingError('Contract not found', 404);
+    }
     res.json(contract)
 }))
 
