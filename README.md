@@ -1,3 +1,18 @@
+# My summary
+
+Basic implementation - all endpoints + test setup with test cases for `contracts` took me ~2:50h. 
+
+What I'd change or add:
+- Separation of layers; isolate layer for db operations
+- Minor code refactors e.g. wrap `services` in classes, build a factory around it. Better and easier testability.
+- Better error handling 
+  - async-error-handler will take care of async function errors (implemented), 
+  - custom error handler as a middleware - more human-friendly error messages, with proper Http statuses
+- Tests
+  - Cover all major APIs
+  - More granular - unit tests
+  - Extract test utilities e.g. better setup of in-memory db (instead of calling provided `seed` method)
+
 # DEEL BACKEND TASK
 
   
