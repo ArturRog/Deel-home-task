@@ -1,17 +1,22 @@
 # My summary
 
 Basic implementation - all endpoints + test setup with test cases for `contracts` took me ~2:50h. 
+I went ahead and added some improvements. The initial version is up to this commit https://github.com/ArturRog/Deel-home-task/commit/5a0a609c99955d837ec21223450058196c7af527
 
 What I'd change or add:
 - Separation of layers; isolate layer for db operations
 - Minor code refactors e.g. wrap `services` in classes, build a factory around it. Better and easier testability.
-- Better error handling 
+- Better error handling (update: added in this commit https://github.com/ArturRog/Deel-home-task/commit/38aa1cd440ddef8d95fea84e388fc717c6b5925c)
   - async-error-handler will take care of async function errors (implemented), 
-  - custom error handler as a middleware - more human-friendly error messages, with proper Http statuses
+  - custom error handler as a middleware - more human-friendly error messages, with proper Http statuses (update: added)
 - Tests
   - Cover all major APIs
+    - Update: job routes covered in this commit https://github.com/ArturRog/Deel-home-task/commit/6166aea05ae3d0ba5d5e68189f2f82822bc86a61
+    - Update: balance routes covered in this commit https://github.com/ArturRog/Deel-home-task/commit/ceeeada4b13a6290f23f33a8c88a3a920944c7f2
+    - Update: admin routes covered in this commit https://github.com/ArturRog/Deel-home-task/commit/ac4387195ade33b3947cbe53e739e754433d76ff
   - More granular - unit tests
   - Extract test utilities e.g. better setup of in-memory db (instead of calling provided `seed` method)
+- I assumed *all* endpoints requires verification, but this is not an requirement. I'd clarify that one and left only where it is needed. E.g. admin endpoints doesn't really require `profile_id` but they might need some other kind of verification (JWT)
 
 # DEEL BACKEND TASK
 
